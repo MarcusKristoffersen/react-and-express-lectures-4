@@ -9,6 +9,7 @@ ExpressJS web server for Java (Node)
 * [x] Cookies
 * [x] static files
 * [x] HTML forms
+* [ ] Secure cookies
 * [ ] Express middleware (app.use)
   * [ ] Enforce use is set
 * [ ] Routes
