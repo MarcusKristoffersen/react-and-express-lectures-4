@@ -1,6 +1,7 @@
 ExpressJS web server for Java (Node)
 ------------------------------------
 
+* [ ] Setup npm project and express
 * [ ] respond to simple request
   * [ ] get request
   * [ ] post request
@@ -11,4 +12,3 @@ ExpressJS web server for Java (Node)
   * [ ] Enforce use is set
 * [ ] Routes
 * [ ] Testing Express code - Supertest with Superagent
-* 
