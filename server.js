@@ -2,6 +2,7 @@ import express from "express";
 import cookieParser from "cookie-parser"
 import bodyParser from "body-parser"
 import dotenv from "dotenv";
+
 dotenv.config();
 
 const app = express();
@@ -11,16 +12,14 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 
-app.get("/login", (req, res) => {
-    const cookieUsername = req.signedCookies.username;
-    if (!cookieUsername){
-        return res.sendStatus(401);
-    }
-
-    const user = users.find(u => u.username === cookieUsername);
-    const {fullName, username} = user;
-    res.json({username, fullName});
+app.use((req, res, next) => {
+    const {username} = req.signedCookies;
+    req.user = users.find(u => u.username === username);
+    console.log("before");
+    next();
+    console.log("after");
 })
+app.use(express.static("public"));
 
 const users = [
     {
@@ -31,11 +30,18 @@ const users = [
     }
 ]
 
+app.get("/login", (req, res) => {
+    console.log("Inside");
+    if (!req.user){
+        return res.sendStatus(401);
+    }
+    const {fullName, username} = req.user;
+    res.json({username, fullName});
+})
+
 
 app.post("/login", (req, res) => {
-
     const {password, username} = req.body;
-
     const user = users.find(u => u.username === username);
     if (user && user.password === password){
         res.cookie("username", username, {signed: true});
@@ -45,7 +51,13 @@ app.post("/login", (req, res) => {
     }
 })
 
-app.use(express.static("public"));
+app.get("/users", (req, res) => {
+    if(!req.user) {
+        return res.sendStatus(401);
+    }
+
+    res.json(users.map(({fullName, username}) => ({username, fullName})));
+})
 
 const server = app.listen(process.env.PORT || 3000, () => {
     console.log(`server started at http://localhost:${server.address().port}`);
