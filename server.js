@@ -8,6 +8,11 @@ app.get("/login", (req, res) => {
     });
 })
 
+app.post("/login", (req, res) => {
+    // set something so that GET /login returns username
+    res.end()
+})
+
 const server = app.listen(process.env.PORT || 3000, () => {
     console.log(`server started at http://localhost:${server.address().port}`);
     })
