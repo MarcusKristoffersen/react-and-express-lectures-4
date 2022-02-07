@@ -10,7 +10,7 @@ ExpressJS web server for Java (Node)
 * [x] static files
 * [x] HTML forms
 * [x] Secure cookies
-* [ ] Express middleware (app.use)
-  * [ ] Enforce use is set
+* [x] Express middleware (app.use)
+  * [x] Enforce use is set
 * [ ] Routes
 * [ ] Testing Express code - Supertest with Superagent
