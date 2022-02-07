@@ -1,8 +1,8 @@
 ExpressJS web server for Java (Node)
 ------------------------------------
 
-* [ ] Setup npm project and express
-* [ ] respond to simple request
+* [x] Setup npm project and express
+* [x] respond to simple request
   * [ ] get request
   * [ ] post request
 * [ ] JSON
